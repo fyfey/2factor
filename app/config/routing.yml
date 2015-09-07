@@ -1,0 +1,14 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+enable_admin:
+    resource: "@EnableAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+_security_logout:
+    path: /logout
