@@ -1,4 +1,9 @@
 2factor
 =======
 
-A Symfony project created on September 7, 2015, 12:36 pm.
+Playing with 2 factor authentication with Symfony2
+
+Using the following bundles:
+* FOS User Bundle
+* Scheb Two-factor bundle
+* Textlocal (for sms)
