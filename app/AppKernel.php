@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Enable\AdminBundle\EnableAdminBundle(),
             new Scheb\TwoFactorBundle\SchebTwoFactorBundle(),
+            new Enable\TextLocalBundle\EnableTextLocalBundle(),
+            new Enable\Sms2FactorBundle\EnableSms2FactorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

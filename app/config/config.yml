@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -94,8 +94,8 @@ scheb_two_factor:
         trusted:              _trusted
     email:
         enabled:              true
-        mailer:               null
-        sender_email:         no-reply@example.com
+        mailer:               enable.sms_mailer
+        sender_email:         %mailer_sender%
         sender_name:          null
         template:             'SchebTwoFactorBundle:Authentication:form.html.twig'
         digits:               4

@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <form class="form" action="" method="post">
+
+        {% for flashMessage in app.session.flashbag.get("two_factor") %}
+        <p class="error">{{ flashMessage|trans }}</p>
+        {% endfor %}
+
+        <div class="form-group">
+            <label for="_auth_code">{{ "scheb_two_factor.auth_code"|trans }}</label>
+            <div class="row">
+                <input type="text" data-number="1" class="digit form-control pull-left" style="width:40px; margin-right: 5px;" autofocus></input>
+                <input type="text" data-number="2" class="digit form-control pull-left" style="width:40px; margin-right: 5px;"></input>
+                <input type="text" data-number="3" class="digit form-control pull-left" style="width:40px; margin-right: 5px;"></input>
+                <input type="text" data-number="4" class="digit form-control pull-left" style="width:40px; margin-right: 5px;"></input>
+            </div>
+        </div>
+        <input id="_auth_code" type="hidden" autocomplete="off" name="_auth_code" />
+        {% if useTrustedOption %}<p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="_trusted" /> {{ "scheb_two_factor.trusted"|trans }}</label></p>{% endif %}
+        <p class="submit"><input class="btn btn-default pull-right" type="submit" value="{{ "scheb_two_factor.login"|trans }}" /></p>
+
+        {# The logout link gives the user a way out if they can't complete the second step #}
+        <p class="cancel"><a href="{{ path("_security_logout") }}">Cancel</a></p>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('input.digit').on('focus', function(e) {
+            $(this).select();
+        });
+        $('input.digit').on('keyup', function(e) {
+            if (e.keyCode === 8) {
+                return;
+            }
+            var val = '';
+            for (var i = 1; i < 5; i++) {
+                val += $('input.digit[data-number='+i+']').val();
+            }
+            $('#_auth_code').val(val);
+
+            $('input.digit[data-number="'+($(e.currentTarget).data('number')+1)+'"]').focus();
+        });
+    </script>
+{% endblock %}

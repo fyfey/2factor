@@ -1,0 +1,9 @@
+services:
+   textlocal:
+       class: Enable\TextLocalBundle\lib\Textlocal
+       arguments: [~, ~, %textlocal.api_key%]
+
+
+   enable.sms_mailer:
+       class: Enable\TextLocalBundle\Mailer\SmsMailer
+       arguments: [@textlocal, @mailer, %sms_disable_delivery%, %sms_debug%, %sms_delivery_phone_number%, %mailer_sender%, @logger]

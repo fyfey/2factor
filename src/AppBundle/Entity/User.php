@@ -25,6 +25,11 @@ class User extends BaseUser implements TwoFactorInterface
      */
     private $twoFactorCode;
 
+    /**
+     * @ORM\Column(type="string", length=50, name="mobile_number")
+     */
+    protected $mobileNumber;
+
     public function __construct()
     {
         parent::__construct();
@@ -40,5 +45,15 @@ class User extends BaseUser implements TwoFactorInterface
 
     public function setEmailAuthCode($twoFactorCode) {
         $this->twoFactorCode = $twoFactorCode;
+    }
+
+    public function getMobileNumber()
+    {
+        return $this->mobileNumber;
+    }
+
+    public function setMobileNumber($mobileNumber)
+    {
+        $this->mobileNumber = $mobileNumber;
     }
 }
